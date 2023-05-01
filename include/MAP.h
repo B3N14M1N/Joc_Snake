@@ -7,28 +7,33 @@
 #include "SNAKE.h"
 class Map{
 private:
-// constante de identificare a spatiilor din board
+    sf::Sprite sprite;
+
+    // constante de identificare a spatiilor din board
     const int EMPTY = 0;
     const int WALL = 1;
     const int FRUIT = 2;
-    const int height=12, width=12; //  dimensiunile mapei
-    sf::Sprite sprite;
+    
+    const int height=12, width=12; //dimensiunile mapei
     int **map;
 
-//initializeaza Matricea board si seteaza valoarea EMPTY
     void CreateMapData();
 
 public:
+    ///Constructor
     Map(sf::Texture&, int);
 
+    ///Metode
     void SetInfo(int, int, int);
     int GetInfo(int, int);
     bool UpdateMap(Snake&);
     void UpdateMap(Fruit&);
-    sf::Vector2f& RandomFreePosition();
+    sf::Vector2f RandomFreePosition();
     bool IsFull();
     void PrintInfoToConsole();
     void DrawMap(sf::RenderWindow&);
+
+    ///Deconstructor
     ~Map();
 };
 

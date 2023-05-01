@@ -26,7 +26,7 @@ class Game{
 private:
     sf::RenderWindow window;
 
-    int unitPixelSize;
+    int pixelsPerUnit;
     sf::Texture mapTexture;
     sf::Texture snakeTexture;
     sf::Texture fruitTexture;
@@ -50,14 +50,14 @@ private:
     Fruit* fruit;
     Snake* snake;
 
-    sf::Vector2f direction;//directia in care merge sarpele
+    ///directia in care merge sarpele
+    sf::Vector2f direction;
 
-    //metode
-    bool CheckClamp(sf::Vector2f&,float, float);
 public:
-
+    ///Constructor
     Game(int,char*);
 
+    ///Metode
     bool LoadTextures(char*, char*, char*, char*, char*, char*);
 
     bool Start();
@@ -75,6 +75,8 @@ public:
     bool ShowMainMenu();
     bool ShowPauseMenu();
     bool ShowGameOverMenu();
+
+    ///Deconstructor
     ~Game();
 };
 
@@ -82,7 +84,11 @@ class MyInput{
 public:
     bool onceUp,onceDown,onceLeft,onceRight,onceEnter,onceEsc,onceIncrement;
     bool up,down,left,right,enter,esc,increment;
+
+    ///Constructor
     MyInput();
+
+    ///Metode
     void GetInput();
     void SetUp(bool);
     void SetDown(bool);
@@ -90,6 +96,8 @@ public:
     void SetRight(bool);
     void SetEnter(bool);
     void SetEsc(bool);
+
+    ///Deconstructor
     ~MyInput();
 };
 #endif

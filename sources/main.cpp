@@ -7,6 +7,7 @@
 #define tScore ".//assets/textures/score.png"
 #define tNumbers ".//assets/textures/numbers.png"
 #define fSave ".//save/score.txt"
+
 enum ScreenSize {
     small=192, // 16 pixeli pe unitate
     medium=384,// 32 pixeli pe unitate

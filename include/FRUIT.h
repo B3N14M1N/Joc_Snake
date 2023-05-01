@@ -7,11 +7,15 @@ private:
     sf::Sprite sprite;
     sf::Vector2f position;
 public:
+    ///Constructor
     Fruit(sf::Texture&,int);
+
+    ///Metode
     sf::Vector2f& GetPosition();
-    void UpdatePosition(sf::Vector2f&);
+    void UpdatePosition(sf::Vector2f);
     void DrawFruit(sf::RenderWindow&, int);
-    void PrintPositionToConsole();
+
+    ///Deconstructor
     ~Fruit();
 };
 #endif

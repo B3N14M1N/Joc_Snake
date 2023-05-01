@@ -29,22 +29,22 @@ private:
     sf::Texture snakeTexture;
 
     int lenght;
-
     int *bodyParts;
     sf::Vector2f *body;
 
     sf::Vector2f direction;
 public:
-    //  Constructor
+    ///Constructor
     Snake(sf::Texture&);
 
-    //  Metode
+    ///Metode
     int GetSnakeLenght();
     sf::Vector2f GetSnakeBodyPosition(int);
     void MoveSnake(sf::Vector2f&);
     void DrawSnake(sf::RenderTarget &, int);
     bool IncreaseSnake();
-    //  Deconstructor
+
+    ///Deconstructor
     ~Snake();
 };
 #endif
