@@ -8,4 +8,4 @@ Comanda pentru a instala direct librăria pe linux **`sudo apt-get install libsf
 ### Rulare aplicatie
 Pentru a rula aplicația, trebuie să mergeți în directoriul **`./Joc_Snake/`.** <br />
 Rulați comanda **`make`** pentru a crea executabilul, apoi rulați comanda **`./bin/GAME.exe`** pentru a porni aplicația. <br />
-Se poate alege dimensiunea ecranului prin adăugarea liniei de comandă anterioare unul din următorii parametrii **small**, **medium** sau **big**. Exemplu **`./bin/GAME.exe medium`**
+Se poate alege dimensiunea ferestrei prin adăugarea liniei de comandă anterioare unul din următorii parametrii **small**, **medium** sau **big**. Exemplu **`./bin/GAME.exe medium`**
