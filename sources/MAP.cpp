@@ -67,7 +67,7 @@ sf::Vector2f Map::RandomFreePosition(){
         j = std::rand()%12;
     }while(this->GetInfo(i,j) != Map::EMPTY);
     position.x = (float)j;
-    position.x = (float)i;
+    position.y = (float)i;
     return position;
 };
 

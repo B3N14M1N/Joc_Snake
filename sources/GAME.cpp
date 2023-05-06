@@ -115,8 +115,8 @@ bool Game::Start(){
             if(this->inStartingMenu || this->inGameOverMenu)
             {
                 ///preia inputul pentru selectarea butoanelor (2)
-                /// 0 - Restart
-                /// 1 - Menu
+                /// 0 - Restart/Start
+                /// 1 - Menu/Exit
                 if(input.onceDown)
                     this->buttonSelected = 1;
                 if(input.onceUp)
@@ -176,6 +176,7 @@ bool Game::Start(){
 
 bool Game::UpdateGame(){
     ///Culege input-ul
+
     MyInput input;
     input.GetInput();
 
@@ -249,25 +250,36 @@ bool Game::UpdateGame(){
     ///Afiseaza elementele grafice ale jocului
     this->ShowInGameScore();
     this->map->DrawMap(this->window);
-    this->fruit->DrawFruit(this->window, pixelsPerUnit);
-    this->snake->DrawSnake(this->window, pixelsPerUnit);
+    this->fruit->DrawFruit(this->window, this->pixelsPerUnit);
+    this->snake->DrawSnake(this->window, this->pixelsPerUnit);
 
     ///Returneaza true pentru a continua updatarea jocului
     return true;
 };
 
 bool Game::ContinueGame(){
+    ///Verifica daca indeplineste conditiile pentru a continua jocul
+    if(!this->inGame && !this->inPauseMenu)
+        return false;
     this->inPauseMenu = false;
-    return !this->inPauseMenu;
+    return true;
 };
 
 bool Game::RestartGame(){
     ///Reseteaza Jocul
-    this->inGame = false;
+    if(!this->inPauseMenu && !this->inGameOverMenu)
+        return false;
+    ///Reseteaza jocul prin a da start
+    ///RestartGame() returneaza true daca 
+    ///a reusit StartGame()
     return this->StartGame();
 };
 
 bool Game::ReturnToMenu(){
+    ///Varifica daca se afla in meniurile de unde se
+    ///poate reintoarce in meniul principal
+    if(!this->inPauseMenu && !this->inGameOverMenu)
+        return false;
     ///Seteaza aplicatia pe Meniul principal
     this->buttonSelected = 0;
     this->inPauseMenu = false;
@@ -279,6 +291,7 @@ bool Game::ReturnToMenu(){
 
 bool Game::PauseGame(){
     ///Seteaza aplicatia pe Pauza, daca este permisa operatia
+    ///Verifica daca nu este in meniuri
      if(this->inStartingMenu || this->inGameOverMenu)
         return false;
     this->buttonSelected = 0;

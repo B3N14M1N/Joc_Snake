@@ -14,10 +14,20 @@ enum ScreenSize {
     big=768    // 64 pixeli pe unitate
 };
 
-int main()
+int main(int argc, char *argv[])
 {
+    ScreenSize size=ScreenSize::big;
+    if(argc > 1)
+    {
+        if(strcmp(argv[1],"small")==0)
+            size=ScreenSize::small;
+        if(strcmp(argv[1],"medium")==0)
+            size=ScreenSize::medium;
+        if(strcmp(argv[1],"big")==0)
+            size=ScreenSize::big;
+    }
     try{
-        Game game(big,(char*)fSave); //12 blocuri * X pixeli pe unitate
+        Game game(size,(char*)fSave); //12 blocuri * X pixeli pe unitate
         game.LoadTextures((char*)tMAP,(char*)tSNAKE,(char*)tFRUIT,(char*)tMenu, (char*)tScore, (char*)tNumbers);
         game.Start();
     }
