@@ -5,3 +5,6 @@ Librăria se poate descărca [**aici**](https://www.google.com/search?q=sfml+dow
 Pentru instalarea librăriei pe linux se poate urmări [acest tutorial](https://www.sfml-dev.org/tutorials/2.5/start-linux.php).
 
 Comanda pentru a instala direct librăria pe linux **`sudo apt-get install libsfml-dev`**
+### Rulare aplicatie
+Pentru a rula aplicația, trebuie să mergeți în directoriul `./Joc_Snake/`.
+Rulați comanda make pentru a crea executabilui, apoi rulați comanda ./bin/GAME.exe pentru a porni aplicația. Se poate alege dimensiunea ecranului prin adaugarea liniei de comanda anterioare  unul din următorii parametrii small medium sau big
