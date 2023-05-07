@@ -12,6 +12,21 @@
 
 #define MAX_FILE_PATH 50
 
+class MyInput{
+public:
+    bool onceUp,onceDown,onceLeft,onceRight,onceEnter,onceEsc,onceIncrement;
+    bool up,down,left,right,enter,esc,increment;
+
+    ///Constructor
+    MyInput();
+
+    ///Metode
+    void GetInput();
+
+    ///Deconstructor
+    ~MyInput();
+};
+
 enum MenuTexts{
     yMSize=128,
     xMSize=643,
@@ -53,6 +68,12 @@ private:
     ///directia in care merge sarpele
     sf::Vector2f direction;
 
+    ///Metode private pentru afisarea grafica
+    bool DrawNumber(sf::Vector2f,int);
+    bool ShowInGameScore();
+    bool ShowMainMenu();
+    bool ShowPauseMenu();
+    bool ShowGameOverMenu();
 public:
     ///Constructor
     Game(int,char*);
@@ -62,7 +83,7 @@ public:
 
     bool Start();
     bool StartGame();
-    bool UpdateGame();
+    bool UpdateGame(MyInput&);
     bool ContinueGame();
     bool PauseGame();
     bool RestartGame();
@@ -70,34 +91,8 @@ public:
     bool GameOver();
     bool Exit();
 
-    bool DrawNumber(sf::Vector2f,int);
-    bool ShowInGameScore();
-    bool ShowMainMenu();
-    bool ShowPauseMenu();
-    bool ShowGameOverMenu();
-
     ///Deconstructor
     ~Game();
 };
 
-class MyInput{
-public:
-    bool onceUp,onceDown,onceLeft,onceRight,onceEnter,onceEsc,onceIncrement;
-    bool up,down,left,right,enter,esc,increment;
-
-    ///Constructor
-    MyInput();
-
-    ///Metode
-    void GetInput();
-    void SetUp(bool);
-    void SetDown(bool);
-    void SetLeft(bool);
-    void SetRight(bool);
-    void SetEnter(bool);
-    void SetEsc(bool);
-
-    ///Deconstructor
-    ~MyInput();
-};
 #endif

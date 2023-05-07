@@ -162,23 +162,22 @@ bool Game::Start(){
             ///Limiteaza FPS-urile pentru a rula jocul la o viteza normala
             this->window.setFramerateLimit(3);
 
+            ///Actualizeaza input-ul
+            input.GetInput();
+
             ///Daca returneaza fals, inseamna ca jocul sa terminat
             ///In caz contrar jocul continua
-            if(!this->UpdateGame())
+            if(!this->UpdateGame(input))
                 this->GameOver();
         }
 
-        ///Termina frame-ul curent
+        ///Afiseaza frame-ul curent
         this->window.display();
     }
     return true;
 };
 
-bool Game::UpdateGame(){
-    ///Culege input-ul
-
-    MyInput input;
-    input.GetInput();
+bool Game::UpdateGame(MyInput& input){
 
     ///Proceseaza input-ul
     sf::Vector2f newDirection(0.0f,0.0f);
@@ -342,7 +341,7 @@ bool Game::GameOver(){
     this->inGameOverMenu = true;
 
     ///Daca noul scor este mai mare decat cel mai bun scor
-    ///atunci seteaza si salveaza noul scor ca fiind Best
+    ///atunci seteaza si salveaza noul scor in fisier
     if(this->score > this->bestScore){
         this->bestScore = this->score;
 
@@ -490,7 +489,7 @@ bool Game::DrawNumber(sf::Vector2f position,int number){
             int val=number%10;
             sf::Sprite numberSprite(this->numbersTexture, sf::IntRect(sf::Vector2i(val * 64, 0), sf::Vector2i(64, 64)));
             numberSprite.scale(this->pixelsPerUnit / 64.0f, this->pixelsPerUnit / 64.0f);
-            numberSprite.setPosition(position + sf::Vector2f((n - i - 1) * this->pixelsPerUnit / 1.5f, 0));
+            numberSprite.setPosition(position + sf::Vector2f((n - i - 1) * this->pixelsPerUnit / 1.5f, 0.0f));
             this->window.draw(numberSprite);
             number/=10;
         }
@@ -536,7 +535,7 @@ void MyInput::GetInput()
     ///Prelucrarea inputurilor astfel incat in
     ///variabilele "once[var]" se salveaza true doar in primul
     ///frame cand este tastatura apasata, si poate deveni true doar
-    ///cand tastatura este ridicata si apasata
+    ///cand tastatura este ridicata si apasata iarasi
     onceUp = false;
     if(!up && pressedUp)
         onceUp = true;
@@ -569,22 +568,4 @@ void MyInput::GetInput()
     esc = pressedEsc;;
 };
 
-void MyInput::SetUp(bool val){
-    this->up = val;
-};
-void MyInput::SetDown(bool val){
-    this->down = val;
-};
-void MyInput::SetLeft(bool val){
-    this->left = val;
-};
-void MyInput::SetRight(bool val){
-    this->right = val;
-};
-void MyInput::SetEnter(bool val){
-    this->enter = val;
-};
-void MyInput::SetEsc(bool val){
-    this->esc = val;
-};
 MyInput::~MyInput(){};
